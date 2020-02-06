@@ -1,0 +1,52 @@
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import plotly.graph_objs as go
+
+app = dash.Dash()
+
+app.layout = html.Div([
+    html.H1(children="Data Visualization",
+           style={'textAlign':'center'}),
+    dcc.Graph(								#  FIRST GRAPH
+        id = 'Sample Graph 1',
+        figure = {
+            'data' : [
+                {'x':["Sam","Paul","Emi"],'y':[99,47,71],'type':'bar'}
+                     ],
+    
+            'layout' : {
+                'title':"Bar Graph Showing Students' Marks",
+                'xaxis' : {'title' : 'Student-Name'},
+                'yaxis' : {'title' : 'Marks'}
+                        }
+        }
+    ),
+     dcc.Graph(								#  SECOND GRAPH
+        id = 'Sample Graph 2',
+        figure = {
+            'data' : [
+                {'x':["Others","Men","Women"],'y':[30,50,48],'type':'line','name':'First'}
+                         ],
+    
+            'layout' : {
+                'title':'Line Graph Showing Salary Of Different Genders',
+                'xaxis' : {'title' : 'Employee-Name'},	
+                'yaxis' : {'title' : 'Salary'}
+                        }
+            
+                }
+    ),
+    dcc.Graph(								# THIRD GRAPH
+    figure = {
+        'data' : [
+             {'labels' : ['Rent','Clothing','Others'],
+               'values' : [49,14,67],'type':'pie'}
+        ],
+        'layout' : {'title' : 'Pie Graph Showing Expenditure Of The Family'}
+    }
+    )
+])        
+
+if __name__ == '__main__':
+    app.run_server(port=5567)
